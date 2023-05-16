@@ -1,0 +1,16 @@
+html,
+body {
+    margin: 0;
+    padding: 0;
+    height: 100vh;
+}
+
+.wrapper {
+    height: 100vh;
+    display: grid;
+    grid-template-rows: 100px 100px 1fr 50px;
+}
+
+div {
+    border: 2px red solid;
+}
