@@ -17,8 +17,14 @@ function addBookToLibrary() {
 };
 
 function displayLibrary() {
-
-}
+    myLibrary.forEach((item) => {
+        const div = document.createElement("div")
+        div.setAttribute("class", "card")
+        
+        console.log(item)
+        console.log(myLibrary.indexOf(item));
+    });
+    };
 
 
 
@@ -48,6 +54,7 @@ window.onclick = (event) => {
 
 // Form Code
 
+const form = document.querySelector(".modal-form")
 const bookName = document.querySelector("#book-name");
 const authorName = document.querySelector("#author-name");
 const maxPages = document.querySelector("#max-pages");
@@ -60,7 +67,8 @@ submitButton.onclick = (event) => {
     newPages = maxPages.value
     newRead = readBoolean.checked
     addBookToLibrary()
-    console.log(myLibrary);
-    modal.style.display = "none";
+    modal.style.display = "none"
     event.preventDefault()
+    form.reset()
+    displayLibrary();
 };
