@@ -37,6 +37,18 @@ div {
     text-align: center;
 }
 
+/* Read Button Styles */
+
+.read-button {
+    background-color: white;
+    color: black;
+}
+
+.unread-button {
+    background-color: black;
+    color: white;
+}
+
 /* Modal Styles */
 
 .modal {

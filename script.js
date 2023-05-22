@@ -13,7 +13,7 @@ function Book(title, author, pages, read) {
 };
 
 function addBookToLibrary() {
-    let newBook = new Book(newTitle, newAuthor, newPages, newRead)
+    const newBook = new Book(newTitle, newAuthor, newPages, newRead)
     myLibrary.push(newBook);
 };
 
@@ -24,39 +24,61 @@ function isRead(readVal) {
 function displayLibrary() {
     container.innerHTML = ""
     myLibrary.forEach((item) => {
-        // creates new divs for all items in card
+        // creates new div for all items in card
         const newCard = document.createElement("div")
         const titleDiv = document.createElement("div")
         const byDiv = document.createElement("div")
         const authorDiv = document.createElement("div")
         const pagesDiv = document.createElement("div")
-        const readDiv = document.createElement("div")
+        const readButton = document.createElement("button")
+        const removeButton = document.createElement("button")
         const bookIndex = myLibrary.indexOf(item)
-        // adds content to divs
+        // sets class and data-keys of div
+        newCard.setAttribute("class", "card")
+        removeButton.setAttribute("data-key", bookIndex)
+        readButton.setAttribute("data-key", bookIndex)
+        // adds content to div
         titleDiv.textContent = item.title
         byDiv.textContent = "by"
         authorDiv.textContent = item.author
         pagesDiv.textContent = `Pages: ${item.pages}`
-        readDiv.textContent = isRead(item.read)      
-        // appends divs to card
+        readButton.textContent = `${isRead(item.read)}`
+        removeButton.textContent = "Remove"
+        // adds event listener to read button
+        readButton.addEventListener("click", (e) => {
+            const readIndex = e.target.dataset.key
+            // console.log(myLibrary[readIndex])
+            myLibrary[readIndex].read = !myLibrary[readIndex].read
+            displayLibrary();
+        })
+        // adds event listener to remove button
+        removeButton.addEventListener("click", (e) => {
+            const removeIndex = e.target.dataset.key
+            myLibrary.splice(removeIndex, 1)
+            displayLibrary()
+        })
+        // appends div to card
         newCard.appendChild(titleDiv)
         newCard.appendChild(byDiv)
         newCard.appendChild(authorDiv)
         newCard.appendChild(pagesDiv)
-        newCard.appendChild(readDiv)
-        // sets class of child divs
+        newCard.appendChild(readButton)
+        newCard.appendChild(removeButton)
+        // adds class to child div
         const newCardChildren = newCard.childNodes
-        newCardChildren.forEach((item) =>{
+        newCardChildren.forEach((item) => {
             item.setAttribute("class", "card-child");
         })
-        // changes attributes of divs
-        newCard.setAttribute("class", "card")
-        newCard.setAttribute("data-key", bookIndex)
+        removeButton.setAttribute("class", "remove-button")
+        readButton.setAttribute("class", "read-button")
+        // add toggle to read button
+        if (readButton.textContent === "Not Read") {
+            readButton.classList.toggle("unread-button");
+        }
         // adds card to the DOM
         container.appendChild(newCard);
 });
 };
-
 
 
 
@@ -104,7 +126,4 @@ submitButton.onclick = (event) => {
         event.preventDefault()
         form.reset()
         displayLibrary();
-    } else {
-        alert("Please fill in all required fields (*)")
-    }
-};
+}};
