@@ -6,17 +6,23 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="style.css">
     <script src="script.js" defer></script>
-    <title>Library</title>
+    <title>Bryan's Cool Library 😎</title>
 </head>
 <body>
     <div class="wrapper">
-        <div class="add-book-wrapper"></div>
+        <div class="title-wrapper">
+            <div id="title">Bryan's Cool Library</div>
+            <img id="logo" src="resources/Logo.jpg" alt="Bryan's Face">
+        </div>
         <div class="add-book">
-            <button id="new-book">Add a new book</button>
+            <button id="new-book">+ Add Book</button>
         </div>
         <div class="card-container">
         </div>
-        <div class="footer"></div>
+        <div class="footer-wrapper">
+            <div id="copyright">Copyright © 2023 Bryan Chow/Liberty Inc.</div>
+            <a href="https://github.com/Bchow2001"><img id="github" src="resources/github-mark-white.svg" alt="Github Logo"></a>
+        </div>
     </div>
     <div class="modal">
         <div class="modal-content">
@@ -26,10 +32,12 @@
                 <input type="text" id="book-name" name="book-name" required>
                 <label for="author-name">Author:*</label>
                 <input type="text" id="author-name" name="author-name" required>
-                <label for="max-pages">How many pages are there in this book?*</label>
+                <label for="max-pages">How many pages are there?*</label>
                 <input type="number" id="max-pages" name="max-pages" min="1" required> 
-                <label for="read-boolean">Have you read this book?</label>
-                <input type="checkbox" name="read-boolean" id="read-boolean">
+                <div class="read">
+                    <label for="read-boolean">Have you read this book?</label>
+                    <input type="checkbox" name="read-boolean" id="read-boolean">
+                </div>
                 <button type="submit" id="submit" >Submit</button>
             </form>
         </div>
